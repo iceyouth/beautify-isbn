@@ -1,0 +1,38 @@
+{
+  "name": "beautify-isbn",
+  "version": "0.1.0",
+  "description": "A small package to make ISBN human-readable",
+  "keywords": [
+    "isbn",
+    "book",
+    "format",
+    "validate"
+  ],
+  "main": "dist/bundle.js",
+  "repository": "https://github.com/iceyouth/beautify-isbn.git",
+  "author": "Zarni Phyo <zarniphyo95@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "ava",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepublish": "in-publish && yarn run build || not-in-publish"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^3.2.2"
+  },
+  "dependencies": {
+    "in-publish": "^2.0.0"
+  },
+  "files": [
+    "dist/*.js"
+  ]
+}
