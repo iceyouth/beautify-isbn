@@ -27,8 +27,8 @@ const range = {
   ],
 }
 
-const reg_validate = /^(978|979|)\d{10}$/
+const regex_validate = /^(978|979|)\d{9}[\dX]$/
 
 export const validate = (isbn) => {
-  return reg_validate.test(isbn)
+  return regex_validate.test(isbn)
 }
