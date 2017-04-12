@@ -27,8 +27,16 @@ const range = {
   ],
 }
 
-const regex_validate = /^(978|979|)\d{9}[\dX]$/
+const regex = /^(978|979|)(\d{1})(\d{8})([\dX])$/
 
 export const validate = (isbn) => {
-  return regex_validate.test(isbn)
+  return regex.test(isbn)
+}
+
+export const format = (isbn) => {
+  if (isbn.match(regex)) {
+    if (isbn.length === 13) return `${RegExp.$1}-${RegExp.$2}-${RegExp.$3}-${RegExp.$4}`
+    if (isbn.length === 10) return `${RegExp.$2}-${RegExp.$3}-${RegExp.$4}`
+  }
+  return isbn
 }
