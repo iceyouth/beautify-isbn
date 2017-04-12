@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "test": "ava",
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
     "prepublish": "in-publish && yarn run build || not-in-publish"
   },
@@ -28,7 +28,8 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "rollup-watch": "^3.2.2"
+    "rollup-watch": "^3.2.2",
+    "uglify-js-harmony": "^2.7.5"
   },
   "dependencies": {
     "in-publish": "^2.0.0"

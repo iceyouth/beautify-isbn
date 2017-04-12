@@ -2,7 +2,8 @@ import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import replace from 'rollup-plugin-replace'
-// import uglify from 'rollup-plugin-uglify'
+import uglify from 'rollup-plugin-uglify'
+import { minify } from 'uglify-js-harmony'
 
 export default {
   entry: 'src/index.js',
@@ -23,6 +24,6 @@ export default {
       exclude: 'node_modules/**',
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
-    // (process.env.NODE_ENV === 'production' && uglify()),
+    (process.env.NODE_ENV === 'production' && uglify({}, minify)),
   ],
 }
