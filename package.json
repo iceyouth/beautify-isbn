@@ -1,6 +1,6 @@
 {
   "name": "beautify-isbn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small package to make ISBN human-readable",
   "keywords": [
     "isbn",
