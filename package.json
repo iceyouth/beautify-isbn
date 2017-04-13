@@ -1,6 +1,6 @@
 {
   "name": "beautify-isbn",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A small package to make ISBN human-readable",
   "keywords": [
     "isbn",
@@ -8,8 +8,8 @@
     "format",
     "validate"
   ],
-  "main": "dist/bundle.umd.js",
-  "module": "dist/bundle.es2015.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.es.js",
   "repository": "https://github.com/iceyouth/beautify-isbn.git",
   "author": "Zarni Phyo <zarniphyo95@gmail.com>",
   "license": "MIT",
