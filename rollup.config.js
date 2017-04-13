@@ -7,9 +7,13 @@ import { minify } from 'uglify-js-harmony'
 
 export default {
   entry: 'src/index.js',
-  dest: 'dist/bundle.js',
-  format: 'es',
-  sourceMap: 'inline',
+  moduleName: 'format',
+  targets: [
+    { dest: 'dist/bundle.cjs.js', format: 'cjs' },
+    // { dest: 'dist/bundle.umd.js', format: 'umd' },
+    { dest: 'dist/bundle.es.js', format: 'es' },
+  ],
+  sourceMap: true,
   plugins: [
     babel({
       exclude: 'node_modules/**',
