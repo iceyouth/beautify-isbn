@@ -36,3 +36,7 @@ export const format = (isbn) => {
   }
   return isbn
 }
+
+export const deformat = (i_s_b_n) => {
+  return i_s_b_n.split('-').join('')
+}
