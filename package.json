@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "pretest": "rollup -c rollup.config.test.js",
-    "test": "ava test/test-bundle.js",
+    "test": "yarn run pretest && ava test/test-bundle.js",
     "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
     "prepublish": "in-publish && yarn run build || not-in-publish"

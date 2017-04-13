@@ -1,5 +1,5 @@
 import test from 'ava'
-import { format, deformat } from '../src/index'
+import { validate, format, deformat } from '../src/index'
 
 const valid_isbn13_978 = '9780753555200'
 const valid_isbn13_978_X = '978075355520X'
@@ -13,6 +13,35 @@ const invalid_isbn = '9770753555200'
 
 const i_s_b_n13 = '978-0-75355520-0'
 const i_s_b_n10 = '0-75355520-0'
+
+
+/** test validate **/
+
+test('Validate valid 978 isbn13', t => {
+  t.true(validate(valid_isbn13_978))
+})
+
+test('Validate valid 978 isbn13 ends with X', t => {
+  t.true(validate(valid_isbn13_978_X))
+})
+
+test('Validate valid 979 isbn13', t => {
+  t.true(validate(valid_isbn13_979))
+})
+
+test('Validate valid 978 isbn13 ends with X', t => {
+  t.true(validate(valid_isbn13_979_X))
+})
+
+test('Validate valid isbn10', t => {
+  t.true(validate(valid_isbn10))
+})
+
+test('Validate valid isbn10 ends with X', t => {
+  t.true(validate(valid_isbn10_X))
+})
+
+/** test format **/
 
 test('Format valid 978 isbn13', t => {
   t.is(format(valid_isbn13_978), '978-0-75355520-0')
@@ -50,4 +79,8 @@ test('Deformat isbn13', t => {
 
 test('Deformat isbn10', t => {
   t.is(deformat(i_s_b_n10), '0753555200')
+})
+
+test('Deformat non-formatted isbn', t => {
+  t.is(deformat('9780753555200'), '9780753555200')
 })
