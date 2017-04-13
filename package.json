@@ -14,7 +14,8 @@
   "author": "Zarni Phyo <zarniphyo95@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "ava",
+    "pretest": "rollup -c rollup.config.test.js",
+    "test": "ava test/test-bundle.js",
     "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
     "prepublish": "in-publish && yarn run build || not-in-publish"
@@ -26,6 +27,7 @@
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-multi-entry": "^2.0.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
@@ -37,5 +39,13 @@
   },
   "files": [
     "dist/*.js"
-  ]
+  ],
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "failFast": true,
+    "tap": true,
+    "require": "babel-register"
+  }
 }

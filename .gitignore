@@ -40,3 +40,7 @@ jspm_packages
 dist
 
 .DS_Store
+
+# Bundled Tests
+test/*-bundle.js
+test/*-bundle.js.map
