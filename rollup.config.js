@@ -7,7 +7,7 @@ import { minify } from 'uglify-js-harmony'
 
 export default {
   entry: 'src/index.js',
-  moduleName: 'format',
+  // moduleName: 'format',
   targets: [
     { dest: 'dist/bundle.cjs.js', format: 'cjs' },
     // { dest: 'dist/bundle.umd.js', format: 'umd' },
