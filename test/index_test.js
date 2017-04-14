@@ -44,27 +44,31 @@ test('Validate valid isbn10 ends with X', t => {
 /** test format **/
 
 test('Format valid 978 isbn13', t => {
-  t.is(format(valid_isbn13_978), '978-0-75355520-0')
+  t.is(format(valid_isbn13_978), '978-0-7535-5520-0')
 })
 
 test('Format valid 978 isbn13 ends with X', t => {
-  t.is(format(valid_isbn13_978_X), '978-0-75355520-X')
+  t.is(format(valid_isbn13_978_X), '978-0-7535-5520-X')
 })
 
 test('Format valid 979 isbn13', t => {
-  t.is(format(valid_isbn13_979), '979-0-75355520-0')
+  t.is(format(valid_isbn13_979), '979-0-7535-5520-0')
 })
 
 test('Format valid 979 isbn13 ends with X', t => {
-  t.is(format(valid_isbn13_979_X), '979-0-75355520-X')
+  t.is(format(valid_isbn13_979_X), '979-0-7535-5520-X')
 })
 
 test('Format valid isbn10', t => {
-  t.is(format(valid_isbn10), '0-75355520-0')
+  t.is(format(valid_isbn10), '0-7535-5520-0')
 })
 
 test('Format valid isbn10 ends with X', t => {
-  t.is(format(valid_isbn10_X), '0-75355520-X')
+  t.is(format(valid_isbn10_X), '0-7535-5520-X')
+})
+
+test('Format valid isbn13 with 912345 publisher', t => {
+  t.is(format('9781912345780'), '978-1-912345-78-0')
 })
 
 test('Format invalid isbn', t => {
