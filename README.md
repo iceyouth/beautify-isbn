@@ -1,4 +1,4 @@
-# beautify-isbn
+# beautify-isbn [![npm version](https://badge.fury.io/js/beautify-isbn.svg)](https://badge.fury.io/js/beautify-isbn)
 A small package to make ISBN human-readable
 
 ## Install
