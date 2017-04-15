@@ -15,10 +15,10 @@
   "license": "MIT",
   "scripts": {
     "pretest": "rollup -c rollup.config.test.js",
-    "test": "yarn run pretest && ava test/test-bundle.js",
+    "test": "yarn pretest && ava test/test-bundle.js",
     "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
-    "prepublish": "in-publish && yarn run build || not-in-publish"
+    "prepublish": "in-publish && yarn build || not-in-publish"
   },
   "devDependencies": {
     "ava": "^0.19.1",

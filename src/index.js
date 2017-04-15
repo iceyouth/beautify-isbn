@@ -56,16 +56,13 @@ const splitToArray = (isbn10) => {
 }
 
 const splitPublisherAndTitle = (rest, ranges) => {
-  const obj = ranges
-    .filter((range) => {
+  const range = ranges
+    .find((range) => {
       const length = range[0].length
       const publisher = rest.slice(0, length)
       return (range[0] <= publisher && range[1] >= publisher)
     })
-    .map((range) => {
-      const length = range[0].length
-      const publisher = rest.slice(0, length)
-      return { publisher: publisher, title: rest.slice(length) }
-    })
-  return obj[0]
+
+  const length = range[0].length
+  return { publisher: rest.slice(0, length), title: rest.slice(length) }
 }

@@ -5,7 +5,7 @@ export default {
   entry: 'test/*_test.js',
   format: 'cjs',
   dest: 'test/test-bundle.js',
-  sourceMap: true,
+  sourceMap: 'inline',
   external: [ 'ava' ],
   plugins: [
     babel({
