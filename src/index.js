@@ -3,11 +3,11 @@ import rangeList from './range'
 const regex = /^(978|979|)(\d{9}[\dX])$/
 
 export const validate = (isbn) => {
-  const rawIsbn = deformat(isbn)
+  const rawIsbn = dehyphenate(isbn)
   return regex.test(rawIsbn)
 }
 
-export const format = (isbn) => {
+export const hyphenate = (isbn) => {
   if (isbn.match(regex)) {
     if (isbn.length === 13) return `${RegExp.$1}-${splitToArray(RegExp.$2).join('-')}`
     if (isbn.length === 10) return splitToArray(RegExp.$2).join('-')
@@ -15,7 +15,7 @@ export const format = (isbn) => {
   return isbn
 }
 
-export const deformat = (i_s_b_n) => {
+export const dehyphenate = (i_s_b_n) => {
   return i_s_b_n.split('-').join('')
 }
 
