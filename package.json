@@ -18,7 +18,7 @@
     "test": "yarn pretest && ava test/test-bundle.js",
     "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
-    "prepublish": "in-publish && yarn build || not-in-publish"
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "ava": "^0.19.1",
@@ -35,7 +35,6 @@
     "uglify-js-harmony": "^2.7.5"
   },
   "dependencies": {
-    "in-publish": "^2.0.0"
   },
   "files": [
     "dist/*.js"
