@@ -47,6 +47,9 @@ Currently support ISBN for
 * Singapore
 * Hong Kong (China)
 * Myanmar
+* France
+* India
+* Kazakhstan
 
 ## License
 [MIT](./LICENSE)
