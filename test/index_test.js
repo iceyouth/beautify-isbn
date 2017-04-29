@@ -3,8 +3,8 @@ import { validate, hyphenate, dehyphenate } from '../src/index'
 
 const valid_isbn13_978 = '9780753555200'
 const valid_isbn13_978_X = '978075355520X'
-const valid_isbn13_979 = '9790753555200'
-const valid_isbn13_979_X = '979075355520X'
+const valid_isbn13_979 = '9791053555200'
+const valid_isbn13_979_X = '979105355520X'
 
 const valid_isbn10 = '0753555200'
 const valid_isbn10_X = '075355520X'
@@ -52,11 +52,11 @@ test('hyphenate valid 978 isbn13 ends with X', t => {
 })
 
 test('hyphenate valid 979 isbn13', t => {
-  t.is(hyphenate(valid_isbn13_979), '979-0-7535-5520-0')
+  t.is(hyphenate(valid_isbn13_979), '979-10-535-5520-0')
 })
 
 test('hyphenate valid 979 isbn13 ends with X', t => {
-  t.is(hyphenate(valid_isbn13_979_X), '979-0-7535-5520-X')
+  t.is(hyphenate(valid_isbn13_979_X), '979-10-535-5520-X')
 })
 
 test('hyphenate valid isbn10', t => {
@@ -69,6 +69,10 @@ test('hyphenate valid isbn10 ends with X', t => {
 
 test('hyphenate valid isbn13 with 912345 publisher', t => {
   t.is(hyphenate('9781912345780'), '978-1-912345-78-0')
+})
+
+test('hyphenate valid myanmar isbn', t => {
+  t.is(hyphenate('9789997185099'), '978-99971-850-9-9')
 })
 
 test('hyphenate invalid isbn', t => {

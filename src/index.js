@@ -1,41 +1,61 @@
-import rangeList from './range'
+import { groupRange, publisherRange } from './range'
 
-const regex = /^(978|979|)(\d{9}[\dX])$/
+const regex = /^(978|979|)(\d{9})([\dX])$/
 
-export const validate = (isbn) => {
-  const rawIsbn = dehyphenate(isbn)
-  return regex.test(rawIsbn)
-}
-
-export const hyphenate = (isbn) => {
-  if (isbn.match(regex)) {
-    if (isbn.length === 13) return `${RegExp.$1}-${splitToArray(RegExp.$2).join('-')}`
-    if (isbn.length === 10) return splitToArray(RegExp.$2).join('-')
-  }
-  return isbn
+export const validate = (rawIsbn) => {
+  const isbn = dehyphenate(rawIsbn)
+  return regex.test(isbn)
 }
 
 export const dehyphenate = (i_s_b_n) => {
   return i_s_b_n.split('-').join('')
 }
 
-const splitToArray = (isbn10) => {
-  const group = isbn10.charAt(0)
-  const checkDigit = isbn10.charAt(9)
-  const rest = isbn10.slice(1, 9)
-  const ranges = rangeList[group]
-  const { publisher, title } = splitPublisherAndTitle(rest, ranges)
-  return [ group, publisher, title, checkDigit ]
+export const hyphenate = (rawIsbn) => {
+  const isbn = dehyphenate(rawIsbn)
+  if (validate(isbn)) {
+    const beautifiedIsbn = [isbn]
+      .map(splitEanAndCheckDigit)
+      .map(splitGroup)
+      .map(splitPublisher)
+      .map(joinWithHyphen)
+
+    return beautifiedIsbn[0]
+  }
+  return rawIsbn
 }
 
-const splitPublisherAndTitle = (rest, ranges) => {
+const splitEanAndCheckDigit = (isbn) => {
+  if(isbn.match(regex)) {
+    return [RegExp.$1, RegExp.$2, RegExp.$3]
+  }
+}
+
+const splitGroup = (array) => {
+  const [ean, rest, checkDigit] = array
+  const ranges = groupRange[ean || '978']
+  return [ean, ...findInRange(rest, ranges), checkDigit]
+}
+
+const splitPublisher = (array) => {
+  const [ean, group, rest, checkDigit] = array
+  const ranges = publisherRange[group]
+  return [ean, group, ...findInRange(rest, ranges), checkDigit]
+}
+
+const findInRange = (rest, ranges) => {
   const range = ranges
     .find((range) => {
-      const length = range[0].length
-      const publisher = rest.slice(0, length)
-      return (range[0] <= publisher && range[1] >= publisher)
+      const l = range[0].length
+      const g = rest.slice(0, l)
+      return (range[0] <= g && range[1] >= g)
     })
-
   const length = range[0].length
-  return { publisher: rest.slice(0, length), title: rest.slice(length) }
+  return [rest.slice(0, length), rest.slice(length)]
+}
+
+const joinWithHyphen = (array) => {
+  return array[0]
+    ? array.join('-')
+    : `${array[1]}-${array[2]}-${array[3]}-${array[4]}`
 }
