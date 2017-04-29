@@ -43,13 +43,16 @@ Currently support ISBN for
 * English Language
 * French Language
 * German Language
-* Japan
-* Singapore
-* Hong Kong (China)
-* Myanmar
+* Brazil
+* China (People's Republic)
+* Colombia
 * France
+* Hong Kong (China)
 * India
+* Japan
 * Kazakhstan
+* Myanmar
+* Singapore
 
 ## License
 [MIT](./LICENSE)
