@@ -7,6 +7,14 @@ export const validate = (rawIsbn) => {
   return regex.test(isbn) && checkSum(isbn)
 }
 
+export const toIsbn13 = (rawIsbn) => {
+  if (validate(rawIsbn)) {
+    const isbn = dehyphenate(rawIsbn)
+    return fixCheckDigit(`978${isbn}`)
+  }
+  return rawIsbn
+}
+
 export const dehyphenate = (i_s_b_n) => {
   return i_s_b_n.split('-').join('')
 }
@@ -79,4 +87,14 @@ const checkSum13 = (xs) => {
     .map((x, i) => i%2===0 ? x : x*3)
     .reduce((x, acc) => x + acc, 0)
   return sum % 10 === 0
+}
+
+const fixCheckDigit = (isbn13) => {
+  const sum = isbn13
+    .split('', 12)
+    .map(c => +c)
+    .map((x, i) => i%2===0 ? x : x*3)
+    .reduce((x, acc) => x + acc, 0)
+  const checkDigit = (10 - (sum % 10)) % 10
+  return `${isbn13.slice(0,12)}${checkDigit}`
 }

@@ -1,5 +1,5 @@
 import test from 'ava'
-import { validate, hyphenate, dehyphenate } from '../src/index'
+import { validate, hyphenate, dehyphenate, toIsbn13 } from '../src/index'
 
 const valid_isbn13_978 = '9780753555200'
 const hyphenated_valid_isbn13_978 = '978-0-7535-5520-0'
@@ -8,8 +8,10 @@ const hyphenated_valid_isbn13_979 = '979-11-5531-002-1'
 
 const valid_isbn10 = '0306406152'
 const hyphenated_valid_isbn10 = '0-306-40615-2'
+const eqv_valid_isbn10 = '9780306406157'
 const valid_isbn10_X = '155404295X'
 const hyphenated_valid_isbn10_X = '1-55404-295-X'
+const eqv_valid_isbn10_X = '9781554042951'
 
 const invalid_isbn = '9770753555200'
 const invalid_isbn13_978 = '9780753555100'
@@ -88,4 +90,14 @@ test('Dehyphenate isbn10', t => {
 
 test('Dehyphenate non-hyphenateted isbn', t => {
   t.is(dehyphenate('9780753555200'), '9780753555200')
+})
+
+/** test toIsbn13 **/
+
+test('Convert from valid isbn10 to isbn13', t => {
+  t.is(toIsbn13(valid_isbn10), eqv_valid_isbn10)
+})
+
+test('Convert from valid isbn10 ending with X to isbn13', t => {
+  t.is(toIsbn13(valid_isbn10_X), eqv_valid_isbn10_X)
 })
