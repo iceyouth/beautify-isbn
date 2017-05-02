@@ -4,7 +4,7 @@ const regex = /^(978|979|)(\d{9})([\dX])$/
 
 export const validate = (rawIsbn) => {
   const isbn = dehyphenate(rawIsbn)
-  return regex.test(isbn)
+  return regex.test(isbn) && checkSum(isbn)
 }
 
 export const dehyphenate = (i_s_b_n) => {
@@ -58,4 +58,25 @@ const joinWithHyphen = (array) => {
   return array[0]
     ? array.join('-')
     : `${array[1]}-${array[2]}-${array[3]}-${array[4]}`
+}
+
+const checkSum = (isbn) => {
+  const xs = isbn
+    .split('')
+    .map(c => c==='X' ? 10 : +c)
+  return (xs.length === 10) ? checkSum10(xs) : checkSum13(xs)
+}
+
+const checkSum10 = (xs) => {
+  const sum = xs
+    .map((x, i) => x * (10-i))
+    .reduce((x, acc) => x + acc, 0)
+  return sum % 11 === 0
+}
+
+const checkSum13 = (xs) => {
+  const sum = xs
+    .map((x, i) => i%2===0 ? x : x*3)
+    .reduce((x, acc) => x + acc, 0)
+  return sum % 10 === 0
 }

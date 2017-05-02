@@ -22,19 +22,19 @@ $ npm install --save beautify-isbn
 import { validate, hyphenate, dehyphenate } from 'beautify-isbn'
 
 const isbn13 = '9780753555200'
-const isbn10 = '0753555200'
+const isbn10 = '0306406152'
 
 console.log(validate(isbn13)) // true
 console.log(validate(isbn10)) // true
 
 console.log(hyphenate(isbn13)) // 978-0-7535-5520-0
-console.log(hyphenate(isbn10)) // 0-7535-5520-0
+console.log(hyphenate(isbn10)) // 0-306-40615-2
 
 const hyphenatedIsbn13 = '978-0-7535-5520-0'
-const hyphenatedIsbn10 = '0-7535-5520-0'
+const hyphenatedIsbn10 = '0-306-40615-2'
 
 console.log(dehyphenate(hyphenatedIsbn13)) // 9780753555200
-console.log(dehyphenate(hyphenatedIsbn10)) // 0753555200
+console.log(dehyphenate(hyphenatedIsbn10)) // 0306406152
 ```
 
 
